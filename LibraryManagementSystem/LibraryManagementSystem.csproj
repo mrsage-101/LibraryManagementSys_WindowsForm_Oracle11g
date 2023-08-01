@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckoutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckoutForm.Designer.cs">
+      <DependentUpon>CheckoutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IssueBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IssueBookForm.Designer.cs">
+      <DependentUpon>IssueBookForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +79,18 @@
     <Compile Include="StuOptionsForms.Designer.cs">
       <DependentUpon>StuOptionsForms.cs</DependentUpon>
     </Compile>
+    <Compile Include="StuRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StuRegisterForm.Designer.cs">
+      <DependentUpon>StuRegisterForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CheckoutForm.resx">
+      <DependentUpon>CheckoutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IssueBookForm.resx">
+      <DependentUpon>IssueBookForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StuOptionsForms.resx">
       <DependentUpon>StuOptionsForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StuRegisterForm.resx">
+      <DependentUpon>StuRegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

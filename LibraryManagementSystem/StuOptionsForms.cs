@@ -32,7 +32,9 @@ namespace LibraryManagementSystem
 
         private void btnIssue_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            IssueBookForm IBF = new IssueBookForm();
+            IBF.Show();
         }
 
         private void btnReserve_Click(object sender, EventArgs e)
@@ -42,7 +44,9 @@ namespace LibraryManagementSystem
 
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            CheckoutForm COF = new CheckoutForm();
+            COF.Show();
         }
     }
 }

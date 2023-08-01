@@ -13,6 +13,7 @@ namespace LibraryManagementSystem
 {
     public partial class StuMainForm : Form
     {
+        public static string memberid = "\0";
         OracleConnection con;
         public StuMainForm()
         {
@@ -28,7 +29,9 @@ namespace LibraryManagementSystem
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            StuRegisterForm SMF = new StuRegisterForm();
+            SMF.Show();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -42,23 +45,36 @@ namespace LibraryManagementSystem
             else
             {
                 con.Open();
-                cmd = new OracleCommand("SELECT NAME, PASSWORDS FROM members WHERE NAME= :nam AND PASSWORDS= :pass", con);
+                cmd = new OracleCommand("SELECT MEMBERID, NAME, PASSWORDS FROM members WHERE NAME= :nam AND PASSWORDS= :pass", con);
                 cmd.Parameters.Add(new OracleParameter("nam", textUsername.Text));
                 cmd.Parameters.Add(new OracleParameter("pass", textPassword.Text));
 
-                OracleDataReader r = cmd.ExecuteReader();
-                string[] feilds = new string[3];
-                if (r.Read() && r.GetValue(0).ToString() == textUsername.Text && r.GetValue(1).ToString() == textPassword.Text)
+                using (OracleDataReader r = cmd.ExecuteReader())
                 {
-                    this.Hide();
-                    StuOptionsForms SOF = new StuOptionsForms();
-                    SOF.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("Enter valid username or password. Register if not");
+                    if (r.Read())
+                    {
+                        memberid = r["MEMBERID"].ToString();
+                        string name = r["NAME"].ToString();
+                        string password = r["PASSWORDS"].ToString();
+
+                        if (name == textUsername.Text && password == textPassword.Text)
+                        {
+                            this.Hide();
+                            StuOptionsForms SOF = new StuOptionsForms();
+                            SOF.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Enter valid username or password. Register if not");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Enter valid username or password. Register if not");
+                    }
                 }
                 con.Close();
+
             }
         }
 
