@@ -79,5 +79,10 @@ namespace LibraryManagementSystem
             CheckoutForm COF = new CheckoutForm();
             COF.Show();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

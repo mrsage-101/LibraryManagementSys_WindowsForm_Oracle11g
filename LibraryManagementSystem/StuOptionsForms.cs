@@ -39,7 +39,9 @@ namespace LibraryManagementSystem
 
         private void btnReserve_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            ReservationForm RF = new ReservationForm();
+            RF.Show();
         }
 
         private void btnCheckOut_Click(object sender, EventArgs e)

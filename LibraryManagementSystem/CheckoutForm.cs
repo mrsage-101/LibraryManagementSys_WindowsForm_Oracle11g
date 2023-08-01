@@ -47,6 +47,7 @@ namespace LibraryManagementSystem
             OC.ExecuteNonQuery();
 
             MessageBox.Show("INSERTED SUCCESSFULLY");
+            con.Close();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
