@@ -30,12 +30,14 @@ namespace LibraryManagementSystem
 
         private void btnStudentclick_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            StuMainForm SMF = new StuMainForm();
+            SMF.Show();
         }
 
         private void btnExitclick_Click(object sender, EventArgs e)
         {
-
+            System.Windows.Forms.Application.Exit();
         }
     }
 }
