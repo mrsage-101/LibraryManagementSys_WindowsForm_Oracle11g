@@ -36,14 +36,13 @@ namespace LibraryManagementSystem
         private void btnDONE_Click(object sender, EventArgs e)
         {
             con.Open();
-            OracleCommand OC = new OracleCommand("INSERT INTO CHECKOUTS (BookID, MemberID, CheckoutDate, DueDate, ReturnDate) VALUES (:BOOKID, :MEMBERID, :CHECKOUTDATE, :DUEDATE, :RETURNDATE)", con);
+            OracleCommand OC = new OracleCommand("INSERT INTO CHECKOUTS (BookID, MemberID, CheckoutDate) VALUES (:BOOKID, :MEMBERID, :CHECKOUTDATE)", con);
            
    
             OC.Parameters.Add(new OracleParameter(":BOOKID", txtBookid.Text));
             OC.Parameters.Add(new OracleParameter(":MEMBERID", txtMemberId.Text));
             OC.Parameters.Add(new OracleParameter(":CHECKOUTDATE", dateTimePicker1.Value));
-            OC.Parameters.Add(new OracleParameter(":DUEDATE", dateTimePicker2.Value));
-            OC.Parameters.Add(new OracleParameter(":RETURNDATE", dateTimePicker3.Value));
+            
             OC.ExecuteNonQuery();
 
             MessageBox.Show("INSERTED SUCCESSFULLY");

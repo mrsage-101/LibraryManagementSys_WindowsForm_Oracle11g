@@ -84,3 +84,136 @@ CREATE TABLE admin(
 );
 
 
+-------------------------------------------
+
+INSERT INTO members (memberid, name, email, phone, address, passwords)
+VALUES
+  (1, 'Abubakar', 'bakar.309@gmail.com', '03012456789', 'WAPDA CITY 204-B FSD', 'bakar'),
+  (2, 'Abdullah', 'abdullah.566@example.com', '03256372291', 'LASANI TOWN 67-A FSD', 'abd'),
+  (3, 'Hanzila', 'hanzila.112@example.com', '03214465638', 'CALAN GARDEN 567-D FSD', 'hnz');
+DESC members
+
+SELECT * FROM members
+
+DESC books
+
+------------------------------------------
+CREATE SEQUENCE checkout_id_seq START WITH 1 INCREMENT BY 1
+CREATE TABLE checkouts(
+   checkoutid NUMBER PRIMARY KEY ,
+   bookitemid number NOT NULL,
+   memberid number NOT NULL,
+   checkoutdate DATE NOT NULL,
+   duedate DATE NOT NULL,
+   returndate DATE NOT NULL,
+
+   CONSTRAINT fk_checkouts_bookitem
+   FOREIGN KEY (bookitemid)
+   REFERENCES bookitem (bookitemid)
+   ON DELETE CASCADE,
+   
+   CONSTRAINT fk_checkouts_members
+   FOREIGN KEY (memberid)
+   REFERENCES members (memberid)
+   ON DELETE CASCADE 
+);
+
+CREATE OR REPLACE TRIGGER trg_checkout_id
+BEFORE INSERT ON Checkouts
+FOR EACH ROW
+BEGIN
+  :NEW.CheckoutID := checkout_id_seq.NEXTVAL;
+END;
+----------------------------------------------------
+
+
+INSERT INTO members (memberid, name, email, phone, address, passwords)
+VALUES
+  (1, 'Abubakar', 'bakar.309@gmail.com', '03012456789', 'WAPDA CITY 204-B FSD', 'bakar'),
+  (2, 'Abdullah', 'abdullah.566@example.com', '03256372291', 'LASANI TOWN 67-A FSD', 'abd'),
+  (3, 'Hanzila', 'hanzila.112@example.com', '03214465638', 'CALAN GARDEN 567-D FSD', 'hnz');
+DESC members
+
+SELECT * FROM members
+
+DESC books
+
+INSERT INTO books(bookid, title, author, subjectcategory, publicationdate, racknumber)
+VALUES
+  (1, 'Introduction to Algorithms', 'Clifford Rein', 'DataStructures', DATE '2022-01-15', 1);
+
+SELECT * FROM books
+
+INSERT INTO books(bookid, title, author, subjectcategory, publicationdate, racknumber)
+VALUES
+  (2, 'Introduction to Computer Science', 'John Smith', 'Computer Science', DATE '2022-01-15', 2);
+
+INSERT INTO books(bookid, title, author, subjectcategory, publicationdate, racknumber)
+VALUES
+  (3, 'Software Engineering Principles', 'Jane Doe', 'Software Engg.', DATE '2022-01-15', 3);
+
+INSERT INTO books(bookid, title, author, subjectcategory, publicationdate, racknumber)
+VALUES
+  (4, 'ASP.NET WITH HTML AND CSS', 'USMAN GHOUS', 'Computer Science', DATE '2022-01-15', 1);
+
+
+DESC checkouts
+
+DROP TABLE checkouts
+
+
+CREATE SEQUENCE checkout_id_seq START WITH 1 INCREMENT BY 1
+CREATE TABLE checkouts(
+   checkoutid NUMBER PRIMARY KEY ,
+   bookid number NOT NULL,
+   memberid number NOT NULL,
+   checkoutdate DATE NOT NULL,
+   duedate DATE NOT NULL,
+   returndate DATE NOT NULL,
+
+   CONSTRAINT fk_checkouts_books
+   FOREIGN KEY (bookid)
+   REFERENCES books (bookid)
+   ON DELETE CASCADE,
+   
+   CONSTRAINT fk_checkouts_members
+   FOREIGN KEY (memberid)
+   REFERENCES members (memberid)
+   ON DELETE CASCADE 
+);
+
+CREATE OR REPLACE TRIGGER trg_checkout_id
+BEFORE INSERT ON Checkouts
+FOR EACH ROW
+BEGIN
+  :NEW.CheckoutID := checkout_id_seq.NEXTVAL;
+END;
+
+
+CREATE OR REPLACE TRIGGER trg_checkout_decrement
+AFTER INSERT ON Checkouts
+FOR EACH ROW
+BEGIN
+  UPDATE BookItem
+  SET Stock = Stock - 1
+  WHERE BookID = :NEW.BookID;
+END;
+
+DESC bookitem
+
+
+CREATE TABLE bookitem(
+   stock number,
+   bookid number NOT NULL,
+   status VARCHAR(20) NOT NULL,
+   CONSTRAINT fk_book_items_books
+   FOREIGN KEY (bookid)
+   REFERENCES books (bookid)
+   ON DELETE CASCADE
+);
+
+
+
+DROP TABLE bookitem
+
+

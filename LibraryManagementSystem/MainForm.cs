@@ -25,7 +25,9 @@ namespace LibraryManagementSystem
 
         private void btnAdminclick_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            AdminOptionForm AOF = new AdminOptionForm();
+            AOF.Show();
         }
 
         private void btnStudentclick_Click(object sender, EventArgs e)

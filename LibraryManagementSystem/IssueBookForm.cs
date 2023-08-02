@@ -17,7 +17,7 @@ namespace LibraryManagementSystem
         public string bkcategory = "\0";
         public string bkname = "\0";
         public string bkauthor = "\0";
-        public string bkid = "\0";
+        //public string bkid = "\0";
 
         public IssueBookForm()
         {
@@ -42,17 +42,26 @@ namespace LibraryManagementSystem
             OC.Parameters.Add(new OracleParameter("BN", txtBookName.Text));
             OC.Parameters.Add(new OracleParameter("AU", txtAuthor.Text));
 
+            string bkid = string.Empty; // Declare the variable to store BOOKID value
+
             using (OracleDataReader r = OC.ExecuteReader())
             {
                 if (r.HasRows)
                 {
-                    bkid = r["BOOKID"].ToString();
                     DataTable DT = new DataTable();
                     DT.Load(r);
                     dataGridView1.DataSource = DT;
+
+                    // Read the BOOKID value from the first row (you can choose a specific row depending on your requirements)
+                    //r.Read();
+                    //bkid = r["BOOKID"].ToString();
                 }
             }
+
             con.Close();
+
+            // Now you can use the bkid variable outside the using block
+
         }
 
 
