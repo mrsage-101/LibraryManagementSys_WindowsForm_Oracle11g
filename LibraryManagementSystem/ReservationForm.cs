@@ -62,11 +62,10 @@ namespace LibraryManagementSystem
         {
             con.Open();
             OracleCommand OC1 = new OracleCommand();
-            OC1 = new OracleCommand("INSERT INTO RESERVATIONS (BOOKID, MEMBERID, RESERVATIONDATE, STATUS) VALUES (:bkid, :mid, :rd, :st)", con);
+            OC1 = new OracleCommand("INSERT INTO RESERVATIONS (BOOKID, MEMBERID, RESERVATIONDATE) VALUES (:bkid, :mid, :rd)", con);
             OC1.Parameters.Add(new OracleParameter("bkid", txtBookid.Text));
             OC1.Parameters.Add(new OracleParameter("mid", txtMemberID.Text));
             OC1.Parameters.Add(new OracleParameter("rd", dateTimePicker1.Value));
-            OC1.Parameters.Add(new OracleParameter("st", textStatus.Text));
 
             OC1.ExecuteNonQuery();
             MessageBox.Show("INSERTED SUCCESSFULLY");

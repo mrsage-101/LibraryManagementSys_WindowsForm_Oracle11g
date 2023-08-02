@@ -29,7 +29,7 @@ namespace LibraryManagementSystem
             string conStr = @"DATA SOURCE = localhost:1521/xe; USER ID=LIBUSER; PASSWORD=1234";
             con = new OracleConnection(conStr);
             panel1.BackColor = Color.FromArgb(100, 0, 0, 0);
-            
+            update_grid();
         }
 
         private void update_grid()
@@ -68,6 +68,45 @@ namespace LibraryManagementSystem
         private void btnUPDATE_Click(object sender, EventArgs e)
         {
             con.Open();
+            OracleCommand updateMember = con.CreateCommand();
+            updateMember.CommandText = "UPDATE CHECKOUTS SET DUEDATE= :dd, RETURNDATE =:rd WHERE MEMBERID = :memberid";
+            updateMember.Parameters.Add(new OracleParameter(":dd", dateTimePicker1.Value));
+            updateMember.Parameters.Add(new OracleParameter(":rd", dateTimePicker2.Value));
+            updateMember.Parameters.Add(new OracleParameter(":memberid", txtSearchUsr.Text));
+
+            updateMember.CommandType = CommandType.Text;
+            int rowsUpdated = updateMember.ExecuteNonQuery();
+            con.Close();
+            
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearchUsr_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

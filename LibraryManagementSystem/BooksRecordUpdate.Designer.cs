@@ -100,6 +100,7 @@
             this.label8.Size = new System.Drawing.Size(106, 23);
             this.label8.TabIndex = 48;
             this.label8.Text = "MemberId";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // txtSearchUsr
             // 
@@ -107,6 +108,7 @@
             this.txtSearchUsr.Name = "txtSearchUsr";
             this.txtSearchUsr.Size = new System.Drawing.Size(157, 22);
             this.txtSearchUsr.TabIndex = 46;
+            this.txtSearchUsr.TextChanged += new System.EventHandler(this.txtSearchUsr_TextChanged);
             // 
             // dataGridView1
             // 
@@ -128,6 +130,7 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(310, 22);
             this.dateTimePicker1.TabIndex = 53;
             this.dateTimePicker1.Value = new System.DateTime(2023, 8, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateTimePicker2
             // 
@@ -139,6 +142,7 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(310, 22);
             this.dateTimePicker2.TabIndex = 54;
             this.dateTimePicker2.Value = new System.DateTime(2023, 8, 1, 0, 0, 0, 0);
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // label3
             // 
@@ -150,6 +154,7 @@
             this.label3.Size = new System.Drawing.Size(96, 23);
             this.label3.TabIndex = 55;
             this.label3.Text = "DUE DATE";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -161,6 +166,7 @@
             this.label4.Size = new System.Drawing.Size(127, 23);
             this.label4.TabIndex = 56;
             this.label4.Text = "RETURN DATE";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // btnUPDATE
             // 
